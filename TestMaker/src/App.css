@@ -1,0 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: b;
+}
+body {
+  background-color: #575761;
+  color: #fff;
+}

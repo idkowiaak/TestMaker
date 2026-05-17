@@ -1,16 +1,17 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Zamysł aplikacji:
+-RWD
+-Możliwość zalogowania,
+-Są 2 klasy (nauczyciel, uczeń) ew. jeszcze admin z wszystkimi funkcjami ale raczej bez sensu,
+-nauczyciel po zalogowaniu może utworzyć test wyświetla mu się modal w którym wypełnia np. Zadanie 1 i daje treść zadania potem Zadanie 2 itd. itd. w późniejszych etapach można dodać zdjęcie można też tak napisać,
+-uczeń możne zrobić tak że zostaje przypisany po loginie swoim użytkownika (bądź po mailu? lub ustawionej nazwie użytkownika), dodatkowo może wypełnić egzamin tylko raz chyba że nauczyciel wybierze opcje wielokrotnego podejścia,
+-sam modal będzie wyglądać normalnie zadanie1. do wpisania może suwak który pozwoli na jakieś rozszerzenia np. właśnie dodanie zdjęcia,
+-proste UI,
+-backend node.js
+-front react.js
+-Jeśli uczeń wyjdzie z testu np. na inny pulpit to nauczycielowi wyświetli się komunikat dokładnie jaki uczeń wyszedł z testu,
+-nauczyciel może dodać czas do testu,
+-1 strona (główna) będzie wyświetlać możliwość logowania, jakieś zdjęcie w tle i ogólnie logowanie wybór, rejestracji czy logowania i opis aplikacji z lewej storny z prawej logowanie,
+-2 po zalogowaniu wyświetla się prosty panel do tworzenia testu (nauczyciel), bądź do dołączenia (uczeń), z lewej strony bądź na górze zrobi się prostą listę z wyborem,
+-3 uczeń dostaje stronę z 2 przyciskami dołąćz do egzaminu i drugi wyjdź lub opuść,
+-4 uczeń gdy kliknie dołącz, dołączy do egzaminu i wyświetli mu się egzamin na końcu przycisk submit,
+![alt text](image.png)
