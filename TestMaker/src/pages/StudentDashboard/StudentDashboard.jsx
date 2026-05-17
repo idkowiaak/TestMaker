@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./StudentDashboard.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
-function StudentDashboard() {
+function StudentDashboard({ role }) {
   return (
     <div className="dashboard-container">
-      <Sidebar />
+      <Sidebar role={role} />
       <main className="main-content">
         <header className="content-header">
           <h1>Panel Ucznia</h1>

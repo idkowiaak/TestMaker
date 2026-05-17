@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./TeacherDashboard.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
-function TeacherDashboard() {
+function TeacherDashboard({ role }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [tasks, setTasks] = useState([{ id: 1, text: "" }]);
   const handleAddTask = () => {
@@ -18,7 +18,7 @@ function TeacherDashboard() {
 
   return (
     <div className="dashboard-container">
-      <Sidebar />
+      <Sidebar role={role} />
       <main className="main-content">
         <header className="content-header">
           <h1>Panel Nauczyciela</h1>
