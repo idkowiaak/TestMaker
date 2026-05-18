@@ -22,7 +22,7 @@ function Help() {
 
           <div className="help-cards-grid">
             <div className="help-card">
-              <h3>Szybkie rozwiązania</h3>
+              <h3>Szybkie rozwiązania test</h3>
               <ul>
                 <li>
                   <strong>Błąd podczas testu:</strong> Odśwież stronę (F5 / Cmd
