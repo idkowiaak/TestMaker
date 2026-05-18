@@ -1,6 +1,6 @@
 import React from "react";
 import "./Sidebar.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Sidebar({}) {
   const navigate = useNavigate();
@@ -19,31 +19,24 @@ function Sidebar({}) {
         {/* OPCJE DLA NAUCZYCIELA */}
         {role === "teacher" && (
           <>
-            <a href="#" className="active">
-              Moje Egzaminy
-            </a>
+            <Link to={"/teacher"}>Moje egzaminy</Link>
             <a href="#">Wyniki Uczniów</a>
-            <a href="#">Test</a>
-            <a href="#">Test</a>
-            <a href="#">Test</a>
+            <a href="#">Zarządzanie klasami</a>
           </>
         )}
 
         {/* OPCJE DLA UCZNIA */}
         {role === "student" && (
           <>
-            <a href="#" className="active">
-              Dostępne Egzaminy
-            </a>
-            <a href="#">Moje Wyniki</a>
-            <a href="#">TEST</a>
-            <a href="#">TEST</a>
+            <Link to={"/student"}>Dostępne egzaminy</Link>
+            <Link to={"/myresults"}>Moje wyniki</Link>
             <a href="#">TEST</a>
           </>
         )}
 
         {/* WSPÓLNE OPCJE */}
-        <a href="#">Ustawienia</a>
+        <Link to={"/settings"}>Ustawienia</Link>
+        <Link to={"/help"}>Pomoc</Link>
       </nav>
 
       <div className="sidebar-footer">

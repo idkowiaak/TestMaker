@@ -99,7 +99,7 @@ app.post("/api/verify", (req, res) => {
     res.status(401).json({ message: "Token jest nieprawidłowy lub wygasł!" });
   }
 });
-const PORT = 5000;
+const PORT = 8080;
 app.listen(PORT, () =>
   console.log(`[OK] Bezpieczny backend działa na porcie ${PORT}`),
 );
