@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import "./TeacherDashboard.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
+
 function TeacherDashboard({ role }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [tasks, setTasks] = useState([{ id: 1, text: "" }]);
+  const [examName, setExamName] = useState("");
+  const [examTime, setExamTime] = useState("");
+  const [allowMultiple, setAllowMultiple] = useState(false);
+  const [tasks, setTasks] = useState([
+    { id: 1, text: "", isClosed: false, options: [] },
+  ]);
+  const [exams, setExams] = useState([]);
+
   const handleAddTask = () => {
-    const newId = tasks.length + 1;
-    setTasks([...tasks, { id: newId, text: "" }]);
+    const newId = Date.now();
+    setTasks([...tasks, { id: newId, text: "", isClosed: false, options: [] }]);
   };
 
   const handleTaskChange = (id, value) => {
@@ -14,6 +22,71 @@ function TeacherDashboard({ role }) {
       task.id === id ? { ...task, text: value } : task,
     );
     setTasks(updatedTasks);
+  };
+
+  const handleToggleClosed = (id) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        const isClosed = !task.isClosed;
+        const options = isClosed ? [{ letter: "A", text: "" }] : [];
+        return { ...task, isClosed, options };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  };
+
+  const handleAddOption = (taskId) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        const nextLetter = String.fromCharCode(65 + task.options.length);
+        return {
+          ...task,
+          options: [...task.options, { letter: nextLetter, text: "" }],
+        };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  };
+
+  const handleOptionChange = (taskId, optionIndex, value) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        const updatedOptions = task.options.map((opt, idx) =>
+          idx === optionIndex ? { ...opt, text: value } : opt,
+        );
+        return { ...task, options: updatedOptions };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  };
+
+  const handleCreateExam = () => {
+    if (!examName.trim()) {
+      alert("Proszę podać nazwę egzaminu!");
+      return;
+    }
+    const newExam = {
+      id: Date.now(),
+      name: examName,
+      time: examTime,
+      allowMultiple: allowMultiple,
+      tasks: tasks.filter((task) => task.text.trim() !== ""),
+    };
+
+    setExams([...exams, newExam]);
+    setExamName("");
+    setExamTime("");
+    setAllowMultiple(false);
+    setTasks([{ id: 1, text: "", isClosed: false, options: [] }]);
+    setIsModalOpen(false);
+  };
+
+  const handleRemoveExam = (examId) => {
+    const updatedExams = exams.filter((exam) => exam.id !== examId);
+    setExams(updatedExams);
   };
 
   return (
@@ -29,13 +102,65 @@ function TeacherDashboard({ role }) {
             Stwórz nowy test
           </button>
         </header>
+
         <section className="exams-section">
           <h2>Twoje aktywne egzaminy</h2>
           <div className="exams-grid">
-            <div className="exam-card placeholder-card">
-              <h3>Brak utworzonych testów</h3>
-              <p>Kliknij przycisk powyżej, aby dodać swój pierwszy egzamin.</p>
-            </div>
+            {exams.length === 0 ? (
+              <div className="exam-card placeholder-card">
+                <h3>Brak utworzonych testów</h3>
+                <p>
+                  Kliknij przycisk powyżej, aby dodać swój pierwszy egzamin.
+                </p>
+              </div>
+            ) : (
+              exams.map((exam) => (
+                <div key={exam.id} className="exam-card">
+                  <h3>{exam.name}</h3>
+                  <p>
+                    <strong>Czas:</strong> {exam.time} min
+                  </p>
+                  <p>
+                    <strong>Podejścia wielokrotne:</strong>{" "}
+                    {exam.allowMultiple ? "Tak" : "Nie"}
+                  </p>
+                  <div className="exam-card-tasks">
+                    <h4>Zadania:</h4>
+                    <ul>
+                      {exam.tasks.map((task, index) => (
+                        <li key={task.id}>
+                          <strong>Zadanie {index + 1}:</strong> {task.text}
+                          {task.options && task.options.length > 0 && (
+                            <div className="exam-card-options">
+                              {task.options.map((opt, oIdx) => (
+                                <span key={oIdx}>
+                                  <strong>{opt.letter}:</strong>{" "}
+                                  {opt.text || "..."}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="teacherdashboard-btn-container">
+                      <button
+                        className="add-student-btn"
+                        onClick={() => alert("kod: 1234")}
+                      >
+                        Przekaz kod
+                      </button>
+                      <button
+                        className="remove-test-btn"
+                        onClick={() => handleRemoveExam(exam.id)}
+                      >
+                        Usun
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </section>
       </main>
@@ -48,7 +173,9 @@ function TeacherDashboard({ role }) {
               <button
                 className="close-modal-btn"
                 onClick={() => setIsModalOpen(false)}
-              ></button>
+              >
+                &times;
+              </button>
             </header>
 
             <div className="modal-body">
@@ -57,17 +184,26 @@ function TeacherDashboard({ role }) {
                 type="text"
                 placeholder="np. test wiedzy ogólnej"
                 className="modal-input"
+                value={examName}
+                onChange={(e) => setExamName(e.target.value)}
               />
 
-              <label>Czas trwania:</label>
+              <label>Czas trwania (minuty):</label>
               <input
                 type="number"
                 placeholder="np. 45"
                 className="modal-input"
+                value={examTime}
+                onChange={(e) => setExamTime(e.target.value)}
               />
 
               <div className="allow-multiple-box">
-                <input type="checkbox" id="multiple-attempts" />
+                <input
+                  type="checkbox"
+                  id="multiple-attempts"
+                  checked={allowMultiple}
+                  onChange={(e) => setAllowMultiple(e.target.checked)}
+                />
                 <label htmlFor="multiple-attempts">
                   Zezwól na wielokrotne podejścia
                 </label>
@@ -79,7 +215,21 @@ function TeacherDashboard({ role }) {
               <div className="tasks-list">
                 {tasks.map((task, index) => (
                   <div key={task.id} className="task-item">
-                    <label>Zadanie {index + 1}:</label>
+                    <div className="task-item-header">
+                      <label>Zadanie {index + 1}:</label>
+                      <div className="closed-task-checkbox">
+                        <input
+                          type="checkbox"
+                          id={`closed-${task.id}`}
+                          checked={task.isClosed}
+                          onChange={() => handleToggleClosed(task.id)}
+                        />
+                        <label htmlFor={`closed-${task.id}`}>
+                          Zadanie zamknięte
+                        </label>
+                      </div>
+                    </div>
+
                     <textarea
                       placeholder="Wpisz treść zadania..."
                       value={task.text}
@@ -87,6 +237,42 @@ function TeacherDashboard({ role }) {
                         handleTaskChange(task.id, e.target.value)
                       }
                     />
+
+                    {task.isClosed && (
+                      <div className="options-container">
+                        {task.options.map((option, optionIndex) => (
+                          <div
+                            key={optionIndex}
+                            className="option-input-wrapper"
+                          >
+                            <span className="option-letter">
+                              {option.letter}:
+                            </span>
+                            <input
+                              type="text"
+                              placeholder={`Wpisz odpowiedź ${option.letter}...`}
+                              className="modal-input option-input"
+                              value={option.text}
+                              onChange={(e) =>
+                                handleOptionChange(
+                                  task.id,
+                                  optionIndex,
+                                  e.target.value,
+                                )
+                              }
+                            />
+                          </div>
+                        ))}
+                        <button
+                          type="button"
+                          className="add-option-btn"
+                          onClick={() => handleAddOption(task.id)}
+                        >
+                          + Dodaj odpowiedź
+                          {String.fromCharCode(65 + task.options.length)}
+                        </button>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -103,13 +289,7 @@ function TeacherDashboard({ role }) {
               >
                 Anuluj
               </button>
-              <button
-                className="save-exam-btn"
-                onClick={() => {
-                  alert("Zapisano test!(TEST)");
-                  setIsModalOpen(false);
-                }}
-              >
+              <button className="save-exam-btn" onClick={handleCreateExam}>
                 Utwórz
               </button>
             </footer>

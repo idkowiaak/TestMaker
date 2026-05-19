@@ -103,10 +103,9 @@ function WelcomePage() {
         <div className="left-side-content">
           <h1>TestMaker</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Voluptatibus alias quod eligendi quae labore modi consequatur
-            maiores perferendis consequuntur voluptatem ipsam excepturi ducimus
-            quisquam sapiente, assumenda aliquid quidem provident nemo!
+            Kompleksowa platforma do błyskawicznej weryfikacji wiedzy online.
+            Przenieś sprawdzanie na wyższy poziom z pełną ochroną przed
+            ściąganiem i automatycznym systemem oceniania.
           </p>
         </div>
       </div>

@@ -3,13 +3,13 @@ import "./MyResults.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 function MyResults() {
   return (
-    <div className="MyResults-container">
+    <div className="myresults-container">
       <Sidebar />
-      <main className="main-MyResults-content">
-        <header className="MyResults-content-header">
+      <main className="main-myresults-content">
+        <header className="myresults-content-header">
           <h1>Moje wyniki</h1>
         </header>
-        <section className="MyResults-section"></section>
+        <section className="myresults-section"></section>
       </main>
     </div>
   );

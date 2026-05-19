@@ -42,13 +42,112 @@
   background-color: #e5ab3f;
 }
 
+.exams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.exam-card {
+  background-color: #3b3b42;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #44444b;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.exam-card h3 {
+  font-size: 1.4rem;
+  color: #ffbf46;
+  margin: 0;
+  border-bottom: 1px solid #44444b;
+  padding-bottom: 8px;
+}
+
+.exam-card p {
+  font-size: 0.95rem;
+  color: #e0e0e6;
+  margin: 0;
+}
+
+.exam-card strong {
+  color: #a0a0aa;
+  font-weight: 500;
+}
+
+.exam-card-tasks {
+  margin-top: 8px;
+  border-top: 1px dashed #44444b;
+  padding-top: 12px;
+}
+
+.exam-card-tasks h4 {
+  font-size: 1rem;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.exam-card-tasks ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.exam-card-tasks li {
+  font-size: 0.9rem;
+  background-color: #2b2b30;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #ffffff;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.exam-card-tasks li strong {
+  color: #ffbf46;
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.exam-card-options {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
+  padding-left: 10px;
+}
+
+.exam-card-options span {
+  display: block;
+  font-size: 0.85rem;
+  color: #d1d1d6;
+}
+
+.exam-card-options span strong {
+  display: inline;
+  color: #ffbf46;
+  margin-right: 4px;
+}
+
 .exam-card.placeholder-card {
+  grid-column: 1 / -1;
+  margin-top: 0;
   background-color: #3b3b42;
   padding: 40px;
   border-radius: 12px;
   text-align: center;
   color: #a0a0aa;
-  margin-top: 20px;
 }
 
 .modal-overlay {
@@ -133,6 +232,20 @@
   gap: 8px;
 }
 
+.task-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closed-task-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #e0e0e6;
+}
+
 .task-item textarea {
   width: 100%;
   height: 80px;
@@ -145,6 +258,46 @@
   box-sizing: border-box;
 }
 
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  padding-left: 5px;
+}
+
+.option-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.option-letter {
+  font-weight: 700;
+  color: #ffbf46;
+  min-width: 15px;
+}
+
+.option-input {
+  margin-bottom: 0 !important;
+  padding: 10px !important;
+}
+
+.add-option-btn {
+  padding: 8px;
+  background: transparent;
+  border: 1px dashed #ffbf46;
+  color: #ffbf46;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.add-option-btn:hover {
+  background-color: rgba(255, 191, 70, 0.1);
+}
+
 .add-task-btn {
   padding: 10px;
   background: transparent;
@@ -155,6 +308,7 @@
   font-weight: 600;
   margin-top: 15px;
 }
+
 .add-task-btn:hover {
   color: #eeae35;
 }
@@ -186,6 +340,46 @@
   cursor: pointer;
 }
 
+.teacherdashboard-btn-container {
+  display: flex;
+  margin-top: 20px;
+  gap: 5px;
+}
+
+.add-student-btn {
+  background-color: #2b2b30;
+  color: #e0e0e6;
+  border: 1px solid #ffbf46;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: auto;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+.add-student-btn:hover {
+  background-color: #ffbf46;
+  color: #1a1a1d;
+  box-shadow: 0 0 12px rgba(255, 191, 70, 0.3);
+}
+.remove-test-btn {
+  background: transparent;
+  border: 1px solid #575761;
+  color: #a0a0aa;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.remove-test-btn:hover {
+  border-color: #e63946;
+  color: #e63946;
+  background-color: rgba(230, 57, 70, 0.05);
+}
 @media (max-width: 768px) {
   .dashboard-container {
     flex-direction: column;

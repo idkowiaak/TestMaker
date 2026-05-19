@@ -1,0 +1,37 @@
+.myresults-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #2b2b30;
+  color: #ffffff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-myresults-content {
+  flex: 1;
+  padding: 40px;
+  background-color: #2b2b30;
+}
+
+.myresults-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #3b3b42;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.myresults-content-header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .main-myresults-container {
+    flex-direction: column;
+  }
+
+  .main-myresults-content {
+    padding: 20px;
+  }
+}

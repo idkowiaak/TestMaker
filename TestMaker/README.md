@@ -19,3 +19,4 @@ Zamysł aplikacji:
 DO POPRAWY -
 
 - CSS pozmieniać bo się mocno powtarzają w wielu stronach !important;
+- zamiast alertow pozmieniac na odpowiedni css czyli jak jest blad powiedzmy w logowaniu to zamiast alertu bedzie sie wyswietlal odpowiedni css z dymkiem
