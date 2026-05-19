@@ -20,8 +20,8 @@ function Sidebar({}) {
         {role === "teacher" && (
           <>
             <Link to={"/teacher"}>Moje egzaminy</Link>
-            <a href="#">Wyniki Uczniów</a>
-            <a href="#">Zarządzanie klasami</a>
+            <Link to={"/studentsresults"}>Wyniki uczniów</Link>
+            <Link to={"/classroommanagement"}>Zarządzanie klasami</Link>{" "}
           </>
         )}
 

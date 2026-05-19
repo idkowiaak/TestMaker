@@ -15,3 +15,7 @@ Zamysł aplikacji:
 -3 uczeń dostaje stronę z 2 przyciskami dołąćz do egzaminu i drugi wyjdź lub opuść,
 -4 uczeń gdy kliknie dołącz, dołączy do egzaminu i wyświetli mu się egzamin na końcu przycisk submit,
 ![alt text](image.png)
+
+DO POPRAWY -
+
+- CSS pozmieniać bo się mocno powtarzają w wielu stronach !important;

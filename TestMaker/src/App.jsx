@@ -7,6 +7,8 @@ import "./App.css";
 import SettingsPage from "./pages/Settings/SettingsPage";
 import Help from "./pages/Help/Help";
 import MyResults from "./pages/MyResults/MyResults";
+import StudentsResults from "./pages/StudentsResults/StudentsResults";
+import ClassroomManagement from "./pages/ClassroomManagement/ClassroomManagement";
 
 function App() {
   const currentRole = localStorage.getItem("userRole");
@@ -34,6 +36,11 @@ function App() {
         <Route path="/settings" element={<SettingsPage />}></Route>
         <Route path="/help" element={<Help />}></Route>
         <Route path="/myresults" element={<MyResults />}></Route>
+        <Route path="/studentsresults" element={<StudentsResults />}></Route>
+        <Route
+          path="/classroommanagement"
+          element={<ClassroomManagement />}
+        ></Route>
       </Routes>
     </BrowserRouter>
   );
