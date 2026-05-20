@@ -5,10 +5,8 @@ import { useNavigate } from "react-router-dom";
 function WelcomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
-
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-
   const [regUsername, setRegUsername] = useState("");
   const [regEmail, setRegEmail] = useState("");
   const [regPassword, setRegPassword] = useState("");
@@ -86,7 +84,6 @@ function WelcomePage() {
 
       alert(data.message);
       setIsModalOpen(false);
-
       setRegUsername("");
       setRegEmail("");
       setRegPassword("");

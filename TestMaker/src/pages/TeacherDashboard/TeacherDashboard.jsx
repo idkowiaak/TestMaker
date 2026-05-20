@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TeacherDashboard.css";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
@@ -11,6 +11,22 @@ function TeacherDashboard({ role }) {
     { id: 1, text: "", isClosed: false, options: [] },
   ]);
   const [exams, setExams] = useState([]);
+
+  const API_URL = "http://localhost:8080/api/exams";
+
+  useEffect(() => {
+    fetchExams();
+  }, []);
+
+  const fetchExams = async () => {
+    try {
+      const response = await fetch(API_URL);
+      if (response.ok) {
+        const data = await response.json();
+        setExams(data);
+      }
+    } catch (error) {}
+  };
 
   const handleAddTask = () => {
     const newId = Date.now();
@@ -63,30 +79,56 @@ function TeacherDashboard({ role }) {
     setTasks(updatedTasks);
   };
 
-  const handleCreateExam = () => {
+  const handleCreateExam = async () => {
     if (!examName.trim()) {
       alert("Proszę podać nazwę egzaminu!");
       return;
     }
-    const newExam = {
-      id: Date.now(),
+
+    const examData = {
       name: examName,
       time: examTime,
       allowMultiple: allowMultiple,
       tasks: tasks.filter((task) => task.text.trim() !== ""),
     };
 
-    setExams([...exams, newExam]);
-    setExamName("");
-    setExamTime("");
-    setAllowMultiple(false);
-    setTasks([{ id: 1, text: "", isClosed: false, options: [] }]);
-    setIsModalOpen(false);
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(examData),
+      });
+
+      if (response.ok) {
+        await fetchExams();
+        setExamName("");
+        setExamTime("");
+        setAllowMultiple(false);
+        setTasks([{ id: 1, text: "", isClosed: false, options: [] }]);
+        setIsModalOpen(false);
+      } else {
+        const errData = await response.json();
+        alert(errData.message || "Coś poszło nie tak.");
+      }
+    } catch (error) {
+      alert("Błąd połączenia z serwerem.");
+    }
   };
 
-  const handleRemoveExam = (examId) => {
-    const updatedExams = exams.filter((exam) => exam.id !== examId);
-    setExams(updatedExams);
+  const handleRemoveExam = async (examId) => {
+    try {
+      const response = await fetch(`${API_URL}/${examId}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setExams(exams.filter((exam) => exam.id !== examId));
+      } else {
+        alert("Nie udało się usunąć egzaminu.");
+      }
+    } catch (error) {}
   };
 
   return (
@@ -146,15 +188,15 @@ function TeacherDashboard({ role }) {
                     <div className="teacherdashboard-btn-container">
                       <button
                         className="add-student-btn"
-                        onClick={() => alert("kod: 1234")}
+                        onClick={() => alert(`Kod dla uczniów: ${exam.code}`)}
                       >
-                        Przekaz kod
+                        Przekaż kod
                       </button>
                       <button
                         className="remove-test-btn"
                         onClick={() => handleRemoveExam(exam.id)}
                       >
-                        Usun
+                        Usuń
                       </button>
                     </div>
                   </div>
