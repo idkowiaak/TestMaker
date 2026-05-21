@@ -380,6 +380,27 @@
   color: #e63946;
   background-color: rgba(230, 57, 70, 0.05);
 }
+.exam-option-item.correct-answer-highlight {
+  color: #2ecc71;
+  font-weight: 700;
+}
+.edit-test-btn {
+  background: transparent;
+  border: 1px solid #575761;
+  color: #a0a0aa;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-test-btn:hover {
+  border-color: #ffbf46;
+  color: #ffbf46;
+  background-color: rgba(255, 191, 70, 0.05);
+}
 @media (max-width: 768px) {
   .dashboard-container {
     flex-direction: column;

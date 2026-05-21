@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "id": 1779378822541,
+    "code": "9HL4ZT",
+    "name": "Test wiedz ogólnej TESTOWY",
+    "time": "45",
+    "allowMultiple": true,
+    "tasks": [
+      {
+        "id": 1,
+        "text": "dajdjaidsjaidasjodajidjamkljcnkzjndioasjsda",
+        "isClosed": true,
+        "options": [
+          {
+            "letter": "A",
+            "text": "Odp.A",
+            "isCorrect": true
+          },
+          {
+            "letter": "B",
+            "text": "Odp.B",
+            "isCorrect": false
+          },
+          {
+            "letter": "C",
+            "text": "Odp.C",
+            "isCorrect": false
+          },
+          {
+            "letter": "D",
+            "text": "Odp.D",
+            "isCorrect": false
+          }
+        ]
+      }
+    ]
+  }
+]

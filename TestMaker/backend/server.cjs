@@ -104,11 +104,9 @@ app.post("/api/register", async (req, res) => {
       (u) => u.email === email || u.username === username,
     );
     if (userExists) {
-      return res
-        .status(400)
-        .json({
-          message: "Użytkownik o takim loginie lub emailu już istnieje!",
-        });
+      return res.status(400).json({
+        message: "Użytkownik o takim loginie lub emailu już istnieje!",
+      });
     }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -162,7 +160,36 @@ app.post("/api/verify", (req, res) => {
     res.status(401).json({ message: "Token jest nieprawidłowy lub wygasł!" });
   }
 });
+app.put("/api/exams/:id", (req, res) => {
+  try {
+    const examId = parseInt(req.params.id);
+    const { name, time, allowMultiple, tasks } = req.body;
+    let exams = readExamsFromFile();
 
+    const examIndex = exams.findIndex((e) => e.id === examId);
+    if (examIndex === -1) {
+      return res
+        .status(404)
+        .json({ message: "Nie znaleziono egzaminu do edycji." });
+    }
+
+    exams[examIndex] = {
+      ...exams[examIndex],
+      name,
+      time,
+      allowMultiple,
+      tasks: tasks.filter((task) => task.text.trim() !== ""),
+    };
+
+    writeExamsToFile(exams);
+    res.json({
+      message: "Egzamin został zaktualizowany!",
+      exam: exams[examIndex],
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Błąd serwera podczas edycji egzaminu." });
+  }
+});
 const PORT = 8080;
 app.listen(PORT, () =>
   console.log(`[OK] Bezpieczny backend działa na porcie ${PORT}`),
