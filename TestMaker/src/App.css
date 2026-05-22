@@ -6,3 +6,18 @@ body {
   background-color: #575761;
   color: #fff;
 }
+
+body.light-theme .settings-container,
+body.light-theme .main-settings-content {
+  background-color: #f4f4f9;
+  color: #1a1a1d;
+}
+
+body.light-theme .settings-card {
+  background-color: #ffffff;
+  border-color: #d1d1d6;
+}
+
+body.light-theme .settings-card h2 {
+  color: #3b3b42;
+}

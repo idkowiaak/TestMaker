@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
 import TeacherDashboard from "./pages/TeacherDashboard/TeacherDashboard";
 import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
@@ -12,11 +13,20 @@ import ClassroomManagement from "./pages/ClassroomManagement/ClassroomManagement
 
 function App() {
   const currentRole = localStorage.getItem("userRole");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("appTheme");
+    if (savedTheme === "light") {
+      document.body.classList.add("light-theme");
+    } else {
+      document.body.classList.remove("light-theme");
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
-
         <Route
           path="/teacher"
           element={
@@ -33,14 +43,11 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/settings" element={<SettingsPage />}></Route>
-        <Route path="/help" element={<Help />}></Route>
-        <Route path="/myresults" element={<MyResults />}></Route>
-        <Route path="/studentsresults" element={<StudentsResults />}></Route>
-        <Route
-          path="/classroommanagement"
-          element={<ClassroomManagement />}
-        ></Route>
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/help" element={<Help />} />
+        <Route path="/myresults" element={<MyResults />} />
+        <Route path="/studentsresults" element={<StudentsResults />} />
+        <Route path="/classroommanagement" element={<ClassroomManagement />} />
       </Routes>
     </BrowserRouter>
   );

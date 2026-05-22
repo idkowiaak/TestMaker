@@ -131,6 +131,7 @@ function WelcomePage() {
             <a
               href="#"
               className="register-link"
+              type="submit"
               onClick={() => setIsModalOpen(true)}
             >
               Zarejestruj się
