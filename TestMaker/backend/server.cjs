@@ -190,6 +190,7 @@ app.put("/api/exams/:id", (req, res) => {
     res.status(500).json({ message: "Błąd serwera podczas edycji egzaminu." });
   }
 });
+
 const PORT = 8080;
 app.listen(PORT, () =>
   console.log(`[OK] Bezpieczny backend działa na porcie ${PORT}`),

@@ -7,19 +7,22 @@ function WelcomePage() {
   const navigate = useNavigate();
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+
   const [regUsername, setRegUsername] = useState("");
   const [regEmail, setRegEmail] = useState("");
   const [regPassword, setRegPassword] = useState("");
   const [regConfirmPassword, setRegConfirmPassword] = useState("");
   const [regRole, setRegRole] = useState("student");
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     if (!loginUsername.trim() || !loginPassword.trim()) {
       alert("Proszę podać login i hasło");
       return;
     }
     try {
-      const response = await fetch("/api/login", {
+      const response = await fetch("http://localhost:8080/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,8 +64,13 @@ function WelcomePage() {
       return;
     }
 
+    if (!termsAccepted) {
+      alert("Musisz zaakceptować regulamin!");
+      return;
+    }
+
     try {
-      const response = await fetch("/api/register", {
+      const response = await fetch("http://localhost:8080/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -89,6 +97,7 @@ function WelcomePage() {
       setRegPassword("");
       setRegConfirmPassword("");
       setRegRole("student");
+      setTermsAccepted(false);
     } catch (error) {
       alert("Nie udało się wysłać formularza rejestracji.");
     }
@@ -106,8 +115,12 @@ function WelcomePage() {
           </p>
         </div>
       </div>
+
       <div className="right-side-wp">
-        <div className="right-side-wp-content-container">
+        <form
+          className="right-side-wp-content-container"
+          onSubmit={handleLogin}
+        >
           <h2>Zaloguj się</h2>
           <input
             type="text"
@@ -125,19 +138,24 @@ function WelcomePage() {
             Zapomniałeś hasła?
           </a>
           <div className="btn-wp">
-            <button className="login-btn" onClick={handleLogin}>
+            <button type="submit" className="login-btn">
               Zaloguj się!
             </button>
-            <a
-              href="#"
+            <button
+              type="button"
               className="register-link"
-              type="submit"
               onClick={() => setIsModalOpen(true)}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                textDecoration: "underline",
+              }}
             >
               Zarejestruj się
-            </a>
+            </button>
           </div>
-        </div>
+        </form>
       </div>
 
       {isModalOpen && (
@@ -171,25 +189,35 @@ function WelcomePage() {
                 value={regEmail}
                 onChange={(e) => setRegEmail(e.target.value)}
               />
+
               <label>Typ konta:</label>
-              <div className="role-selection-box">
+              <div
+                className="role-selection-box"
+                style={{ display: "flex", gap: "15px", marginBottom: "15px" }}
+              >
                 <div>
                   <input
-                    type="checkbox"
+                    type="radio"
+                    name="role"
                     id="role-student"
                     checked={regRole === "student"}
                     onChange={() => setRegRole("student")}
                   />
-                  <label htmlFor="role-student">Uczeń</label>
+                  <label htmlFor="role-student" style={{ marginLeft: "5px" }}>
+                    Uczeń
+                  </label>
                 </div>
                 <div>
                   <input
-                    type="checkbox"
+                    type="radio"
+                    name="role"
                     id="role-teacher"
                     checked={regRole === "teacher"}
                     onChange={() => setRegRole("teacher")}
                   />
-                  <label htmlFor="role-teacher">Nauczyciel</label>
+                  <label htmlFor="role-teacher" style={{ marginLeft: "5px" }}>
+                    Nauczyciel
+                  </label>
                 </div>
               </div>
 
@@ -212,9 +240,15 @@ function WelcomePage() {
               />
 
               <div className="allow-multiple-box">
-                <input type="checkbox" id="terms-accept" required />
+                <input
+                  type="checkbox"
+                  id="terms-accept"
+                  checked={termsAccepted}
+                  onChange={(e) => setTermsAccepted(e.target.checked)}
+                />
                 <label htmlFor="terms-accept">
-                  Akceptuję <a href="">regulamin</a> aplikacji TestMaker
+                  Akceptuję <a href="https://example.com/">regulamin</a>{" "}
+                  aplikacji TestMaker
                 </label>
               </div>
             </div>

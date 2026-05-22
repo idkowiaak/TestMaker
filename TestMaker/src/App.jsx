@@ -10,6 +10,7 @@ import Help from "./pages/Help/Help";
 import MyResults from "./pages/MyResults/MyResults";
 import StudentsResults from "./pages/StudentsResults/StudentsResults";
 import ClassroomManagement from "./pages/ClassroomManagement/ClassroomManagement";
+import TestPage from "./pages/TestPage/TestPage";
 
 function App() {
   const currentRole = localStorage.getItem("userRole");
@@ -48,6 +49,14 @@ function App() {
         <Route path="/myresults" element={<MyResults />} />
         <Route path="/studentsresults" element={<StudentsResults />} />
         <Route path="/classroommanagement" element={<ClassroomManagement />} />
+        <Route
+          path="/test/:examId"
+          element={
+            <ProtectedRoute requiredRole="student" role={currentRole}>
+              <TestPage />
+            </ProtectedRoute>
+          }
+        />{" "}
       </Routes>
     </BrowserRouter>
   );
