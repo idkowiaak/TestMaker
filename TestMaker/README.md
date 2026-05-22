@@ -20,3 +20,8 @@ DO POPRAWY -
 
 - CSS pozmieniać bo się mocno powtarzają w wielu stronach !important;
 - zamiast alertow pozmieniac na odpowiedni css czyli jak jest blad powiedzmy w logowaniu to zamiast alertu bedzie sie wyswietlal odpowiedni css z dymkiem
+- Zedytować darkmode/lightmode tak żeby działał porządnie,
+- skonfigurować wyniki uczniów, oraz dodać wykresy dla nauczyciela żeby widzał jaka klasa najlepiej poradziła sobie z testem,
+- zamienic testową podstrone w jakąś sensowną w panelu studenta,
+- po stronie nauczyciela w zarządzaniu klasami, nauczyciel będzie mógł utworzyć klasę i dodać tam ucznia po jego nazwie użytkownika, bądź mailowo(chyba lepiej),
+-

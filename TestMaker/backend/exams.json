@@ -1,196 +1,87 @@
 [
   {
-    "id": 1779378822541,
-    "code": "9HL4ZT",
-    "name": "Test wiedz ogólnej TESTOWY",
+    "id": 1779475294234,
+    "code": "D0TXCS",
+    "name": "Test wiedzy ogólnej",
     "time": "45",
     "allowMultiple": true,
     "tasks": [
       {
         "id": 1,
-        "text": "dajdjaidsjaidasjodajidjamkljcnkzjndioasjsda",
+        "text": "oadksodakodaskodaskoda",
         "isClosed": true,
         "options": [
           {
             "letter": "A",
-            "text": "Odp.A",
+            "text": "sdadas",
+            "isCorrect": false
+          },
+          {
+            "letter": "B",
+            "text": "sdadas",
+            "isCorrect": false
+          },
+          {
+            "letter": "C",
+            "text": "dasdas",
             "isCorrect": true
           },
           {
-            "letter": "B",
-            "text": "Odp.B",
-            "isCorrect": false
-          },
-          {
-            "letter": "C",
-            "text": "Odp.C",
-            "isCorrect": false
-          },
-          {
             "letter": "D",
-            "text": "Odp.D",
+            "text": "adasdas",
+            "isCorrect": false
+          },
+          {
+            "letter": "E",
+            "text": "dasdasdas",
             "isCorrect": false
           }
         ]
-      }
-    ]
-  },
-  {
-    "id": 1779472593702,
-    "code": "P2Z8UZ",
-    "name": "test2",
-    "time": "45",
-    "allowMultiple": true,
-    "tasks": [
+      },
       {
-        "id": 1,
-        "text": "dasdasdas",
+        "id": 1779475287089,
+        "text": "dsadasdasdas",
         "isClosed": true,
         "options": [
           {
             "letter": "A",
-            "text": "asdasdas",
-            "isCorrect": false
-          },
-          {
-            "letter": "B",
-            "text": "dasda",
-            "isCorrect": false
-          },
-          {
-            "letter": "C",
-            "text": "dasda",
-            "isCorrect": false
-          },
-          {
-            "letter": "D",
             "text": "dasdasda",
-            "isCorrect": true
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": 1779472615542,
-    "code": "I5JHAO",
-    "name": "test3",
-    "time": "23",
-    "allowMultiple": true,
-    "tasks": [
-      {
-        "id": 1,
-        "text": "sdadasdas",
-        "isClosed": true,
-        "options": [
-          {
-            "letter": "A",
-            "text": "dsadas",
             "isCorrect": false
           },
           {
             "letter": "B",
-            "text": "dasdas",
+            "text": "dasdasd",
             "isCorrect": false
           },
           {
             "letter": "C",
-            "text": "dasdas",
+            "text": "dasdada",
             "isCorrect": true
-          },
-          {
-            "letter": "D",
-            "text": "dasdasdasda",
-            "isCorrect": false
           }
         ]
       }
     ]
   },
   {
-    "id": 1779472628246,
-    "code": "83GIUB",
-    "name": "test4",
-    "time": "10",
+    "id": 1779475336293,
+    "code": "ZQU06Z",
+    "name": "dasdasd",
+    "time": "421",
     "allowMultiple": false,
     "tasks": [
       {
         "id": 1,
-        "text": "asdadsadasd",
+        "text": "sadadas",
         "isClosed": true,
         "options": [
           {
             "letter": "A",
-            "text": "dasdas",
-            "isCorrect": true
-          },
-          {
-            "letter": "B",
             "text": "dasdasd",
-            "isCorrect": false
-          },
-          {
-            "letter": "C",
-            "text": "dasdasda",
-            "isCorrect": false
-          },
-          {
-            "letter": "D",
-            "text": "dasdasdas",
-            "isCorrect": false
-          }
-        ]
-      },
-      {
-        "id": 1779472633178,
-        "text": "dasdasdas",
-        "isClosed": true,
-        "options": [
-          {
-            "letter": "A",
-            "text": "asdasd",
-            "isCorrect": false
-          },
-          {
-            "letter": "B",
-            "text": "dasdasd",
-            "isCorrect": false
-          },
-          {
-            "letter": "C",
-            "text": "dasdas",
             "isCorrect": true
           },
           {
-            "letter": "D",
-            "text": "dasdasdadada",
-            "isCorrect": false
-          }
-        ]
-      },
-      {
-        "id": 1779472658913,
-        "text": "dsadasd",
-        "isClosed": true,
-        "options": [
-          {
-            "letter": "A",
-            "text": "adas",
-            "isCorrect": false
-          },
-          {
             "letter": "B",
-            "text": "sadasd",
-            "isCorrect": false
-          },
-          {
-            "letter": "C",
-            "text": "dasdasdas",
-            "isCorrect": true
-          },
-          {
-            "letter": "D",
-            "text": "dasdadasdas",
+            "text": "dsdasda",
             "isCorrect": false
           }
         ]
